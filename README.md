@@ -1,27 +1,22 @@
 <kbd style="width: 2em; height: 2em;"><a href="#en">ENGLISH</a></kbd> | <kbd><a href="#ru">РУССКИЙ</a></kbd>
 
-<h1 name="en" id="en">Automatically Raise Your Resume on HH.RU!</h1>
+<h1 name="en" id="en">Automatically collect Your free daily tokens on dreampress.ai!</h1>
 
-A Python Selenium & GitHub Actions bot that automatically raises Your resume in the list on hh.ru
+A Python Selenium & GitHub Actions bot that automates free daily tokens collection on dreampress.ai.
 
 ## GitHub Actions Contents
 
 github.com/nakigoe/hh-ru-raise-bot/.github/workflows/raise.yml
+
 ```
-name: Run Python Selenium headless script to raise a resume in the list on hh.ru
+name: Run Python Selenium headless script to collect free daily tokens on dreampress.ai
 
 # Controls when the workflow will run
 on:
 
   # Triggers the workflow on push or pull request events but only for the "main" branch
   schedule:
-    - cron: '0 0 * * *'
-    - cron: '5 4 * * *'
-    - cron: '10 8 * * *'
-    - cron: '15 12 * * *'
-    - cron: '20 16 * * *'
-    - cron: '25 20 * * *'
-    - cron: "0 */4 * * *"
+    - cron: '0 10 * * *' # daily at 10:00 AM
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,7 +34,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
+
       # Install Python
       - name: setup python
         uses: actions/setup-python@v3
@@ -50,55 +45,56 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install selenium
-      
+
       - name: Raise the resume
         run:
-          python ./bot/raise.py
+          python ./bot/collect-tokens.py
         env:
           LOGIN: ${{ secrets.LOGIN }}
-          KEY: ${{ secrets.KEY }} 
+          KEY: ${{ secrets.KEY }}
 ```
 
 ## Usage
-1) Clone the repository
-2) Create Your own secret keys for GitHub Actions to login into HH.RU: LOGIN and KEY
+
+1. Clone the repository
+2. Create Your own secret keys for GitHub Actions to login into dreampress.ai: LOGIN and KEY
 
 <p>To quickly find <em>GitHub Actions Secrets</em> page, You can use the link:
 <br> <em>github.com/<code>your-login</code>/<code>your-repository-name</code>/settings/secrets/actions/new</em>
 <br> (change <code>your-login</code> and <code>your-repository-name</code>).</p>
 
-![Create LOGIN and KEY Secrets for GitHub Actions](https://github.com/nakigoe/hh-ru-raise-bot/blob/main/github-secrets.png)
+![Create LOGIN and KEY Secrets for GitHub Actions](https://github.com/nakigoe/dreampress-ai-tokens/blob/main/github-secrets.png)
 
-You have to create TWO keys, LOGIN и KEY, with the contents of Your login and password to hh.ru.
+You have to create TWO keys, LOGIN и KEY, with the contents of Your login and password to dreampress.ai.
 
+Everything is mission ready: Your daily tokens will be collected on dreampress.ai automatically!
 
-Everything is mission ready: Your resume will be raised every four hours on hh.ru automatically! 
-
-Add stars to the pepositories!!! 
+Add stars to the pepositories!!!
 
 <hr>
-<h1 name="ru" id="ru">HH.RU автоматическое поднятие резюме в списке каждые четыре часа</h1>
+<h1 name="ru" id="ru">dreampress.ai автоматизация сбора ежедневных бесплатных токенов</h1>
 
-Бот на Python Selenium и GitHub Actions, автоматически поднимает Ваше резюме в списке на hh.ru
+Бот на Python Selenium и GitHub Actions, автоматически собирает Ваши ежедневные бесплатные токены на dreampress.ai
 
 Всё настроено для использования бота на GitHub:
-1) клонируйте репозиторий; 
-2) создайте Ваши собственные ключи (secrets) уже Вашем репозитории в разделе GitHub Actions: LOGIN и KEY (Ваш логин и пароль к hh.ru) 
+
+1. клонируйте репозиторий;
+2. создайте Ваши собственные ключи (secrets) уже Вашем репозитории в разделе GitHub Actions: LOGIN и KEY (Ваш логин и пароль к dreampress.ai)
 
 <p>Чтобы быстро найти страницу <em>создания нового секретного ключа GitHub Actions,</em> Вы можете перейти по сноске:
 <br> <em>github.com/<code>ваш&#8209;ник</code>/<code>название&#8209;репозитория</code>/settings/secrets/actions/new</em>
 <br> (внесите соответствующие изменения: <code>ваш ник</code> и <code>название репозитория</code>).</p>
 
-![создание секретных ключей LOGIN и KEY для GitHub Actions](https://github.com/nakigoe/hh-ru-raise-bot/blob/main/github-secrets.png)
+![создание секретных ключей LOGIN и KEY для GitHub Actions](https://github.com/nakigoe/dreampress-ai-tokens/blob/main/github-secrets.png)
 
-Вам необходимо создать ДВА ключа, LOGIN и KEY, содержание — Ваш логин и пароль к hh.ru.
+Вам необходимо создать ДВА ключа, LOGIN и KEY, содержание — Ваш логин и пароль к dreampress.ai.
 
-Всё готово: бот запускается автоматически каждые четыре часа. Ставьте звёзды, пожалуйста!
+Всё готово: бот запускается автоматически каждый день. Ставьте звёзды, пожалуйста!
 
 <br> Пишите, если Вы хотите получить уроки создания вебсайтов: nakigoetenshi@gmail.com
 <br> 1000 рублей 2 часа один урок
 
-<h2 style="margin: 0 auto" align="center">Ставьте звёзды и делитесь сноской на репозиторий со всеми, кто искал работу, ищет работу, планирует искать работу!</h2>
+<h2 style="margin: 0 auto" align="center">Ставьте звёзды и делитесь сноской на репозиторий со всеми, кто пишет книги и креативные статьи!</h2>
 <br>
 <p style="margin: 0 auto" align="center">Посетите:</p>
 <h1><a href="https://nakigoe.org/ru/" style="background-color: black;" target="_blank">
