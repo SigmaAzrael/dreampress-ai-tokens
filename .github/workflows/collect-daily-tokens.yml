@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Run Python Selenium headless script to raise a resume in the list on hh.ru
+name: Run Python Selenium headless script to automate free daily tokens collection on dreampress.ai
 
 # Controls when the workflow will run
 on:
