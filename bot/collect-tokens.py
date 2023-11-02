@@ -11,7 +11,7 @@ options = webdriver.EdgeOptions()
 options.use_chromium = True
 options.add_argument('headless') # that is, run in the command line only, server run prep
 # options.add_argument("start-maximized")
-my_service=service.Service(r'msedgedriver')
+my_service=service.Service(r'/usr/local/bin/msedgedriver')
 options.page_load_strategy = 'eager' #do not wait for images to load
 options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
