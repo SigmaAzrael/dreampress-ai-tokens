@@ -32,7 +32,7 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           pip install --upgrade pip
-          pip install selenium- name: Download Edge WebDriver
+          pip install selenium
 
       - name: Download Edge WebDriver
         run: |
