@@ -14,12 +14,16 @@ options = webdriver.EdgeOptions()
 options.use_chromium = True
 options.add_argument('headless')
 options.add_argument('disable-gpu')
-options.page_load_strategy = 'eager' #do not wait for images to load
+options.page_load_strategy = 'eager'  # do not wait for images to load
 options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage') # uses disk instead of RAM, may be slow, use it if You receive "driver Run out of memory" crashed browser message
+# options.add_argument('--disable-dev-shm-usage')
 
-driver = webdriver.Edge(EdgeChromiumDriverManager().install(), options=options)
+# You instantiate the Service object with the path to the Edge driver
+edge_service = webdriver.edge.service.Service(EdgeChromiumDriverManager().install())
+
+# And then you pass the service and options like this
+driver = webdriver.Edge(service=edge_service, options=options)
 
 action = ActionChains(driver)
 wait = WebDriverWait(driver,s)

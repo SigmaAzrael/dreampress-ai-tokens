@@ -30,8 +30,7 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           pip install --upgrade pip
-          pip install selenium
-          pip install webdriver-manager
+          pip install -U selenium webdriver-manager
 
       - name: Raise the resume
         run: python ./bot/collect-tokens.py
