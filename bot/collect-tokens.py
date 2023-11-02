@@ -13,7 +13,6 @@ s = 60 #time to wait for a single component on the page to appear, in seconds; i
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('disable-gpu')
-options.page_load_strategy = 'eager'  # do not wait for images to load
 options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
@@ -57,7 +56,7 @@ def god_click(driver, element): # 3 events
 
 def login():
     driver.get(login_page)
-    time.sleep(5)
+    time.sleep(15)
     
     first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div')))
     god_click(driver, first_login_button) 
@@ -68,7 +67,7 @@ def login():
     except:
         pass 
     
-    wait.until(EC.element_to_be_clickable((By.XPATH, '//input[type="email"]'))).send_keys(username)
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="email"]'))).send_keys(username)
 
     wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
 
