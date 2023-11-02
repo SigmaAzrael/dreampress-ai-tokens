@@ -34,8 +34,18 @@ jobs:
 
       - name: Install Microsoft Edge Driver
         run: |
-          sudo apt-get install -y wget unzip
-          wget https://msedgedriver.azureedge.net/118.0.2088.76/edgedriver_linux64.zip
+          sudo apt-get install -y wget unzip software-properties-common
+          # Add Microsoft Edge repository
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+          sudo rm microsoft.gpg
+          sudo apt-get update
+          # Install Microsoft Edge
+          sudo apt-get install -y microsoft-edge-dev
+          # Install Edge WebDriver
+          EDGE_VERSION=$(microsoft-edge --version | grep -oP '(\d+\.\d+\.\d+\.\d+)')
+          wget https://msedgedriver.azureedge.net/$EDGE_VERSION/edgedriver_linux64.zip
           unzip edgedriver_linux64.zip
           sudo mv msedgedriver /usr/local/bin/
           rm edgedriver_linux64.zip

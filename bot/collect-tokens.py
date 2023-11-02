@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -8,10 +9,10 @@ import os
 import time
 
 options = webdriver.EdgeOptions()
-options.use_chromium = True
-options.add_argument('headless') # that is, run in the command line only, server run prep
-# options.add_argument("start-maximized")
-my_service=service.Service(r'/usr/local/bin/msedgedriver')
+options.use_chromium = True  # Specify using Chromium backend
+options.add_argument('headless')
+options.add_argument('disable-gpu')
+
 options.page_load_strategy = 'eager' #do not wait for images to load
 options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
@@ -19,7 +20,9 @@ options.add_experimental_option("detach", True)
 
 s = 60 #time to wait for a single component on the page to appear, in seconds; increase it if you get server-side errors «try again later»
 
-driver = webdriver.Edge(service=my_service, options=options)
+service = EdgeService(executable_path='/usr/local/bin/msedgedriver')
+driver = webdriver.Edge(service=service, options=options)
+
 action = ActionChains(driver)
 wait = WebDriverWait(driver,s)
    
