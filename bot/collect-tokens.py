@@ -1,17 +1,16 @@
 from selenium import webdriver
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.edge import service
 import os
 import time
 
 s = 60 #time to wait for a single component on the page to appear, in seconds; increase it if you get server-side errors «try again later»
 
-options = webdriver.EdgeOptions()
-options.use_chromium = True
+options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('disable-gpu')
 options.page_load_strategy = 'eager'  # do not wait for images to load
@@ -19,11 +18,11 @@ options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
 
-# You instantiate the Service object with the path to the Edge driver
-edge_service = webdriver.edge.service.Service(EdgeChromiumDriverManager().install())
+# Instantiate the Service object with the path to the Chrome driver
+chrome_service = ChromeService(ChromeDriverManager().install())
 
-# And then you pass the service and options like this
-driver = webdriver.Edge(service=edge_service, options=options)
+# Then pass the service and options like this
+driver = webdriver.Chrome(service=chrome_service, options=options)
 
 action = ActionChains(driver)
 wait = WebDriverWait(driver,s)
