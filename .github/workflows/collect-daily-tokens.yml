@@ -37,3 +37,16 @@ jobs:
         env:
           LOGIN: ${{ secrets.LOGIN }}
           KEY: ${{ secrets.KEY }} # if run.py requires passwords..etc, set it as secrets
+
+      - name: Take screenshot on failure
+        if: failure() # This ensures the step only runs if the previous steps failed
+        run: |
+          mkdir -p ./screenshots
+          mv error.png ./screenshots
+        # Add this to the end of your job
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        if: always() # This ensures the artifacts are always uploaded, even if the workflow fails
+        with:
+          name: screenshots
+          path: ./screenshots/

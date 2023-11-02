@@ -55,24 +55,32 @@ def god_click(driver, element): # 3 events
         print(f"An error occurred: {e}")
 
 def login():
-    driver.get(login_page)
-    time.sleep(15)
-    
-    first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div')))
-    god_click(driver, first_login_button) 
-    
     try:
-        second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE")]')))
-        god_click(driver, second_login_button)
-    except:
-        pass 
-    
-    wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="email"]'))).send_keys(username)
+        driver.get(login_page)
+        time.sleep(15)
+        
+        first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div')))
+        god_click(driver, first_login_button) 
+        
+        try:
+            second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE")]')))
+            god_click(driver, second_login_button)
+        except:
+            pass 
+        
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="email"]'))).send_keys(username)
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
 
-    login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "LOGIN")]')))
-    god_click(driver, login_button)
+        login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "LOGIN")]')))
+        god_click(driver, login_button)
+        
+    except Exception as e:
+        driver.save_screenshot('error.png')
+        print(e)
+        # You can also dump the current HTML to see what's on the page
+        print(driver.page_source)
+        raise
     
 def collect_tokens():
     try:
