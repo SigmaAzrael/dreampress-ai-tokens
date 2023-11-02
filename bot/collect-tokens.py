@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -8,20 +8,18 @@ from selenium.webdriver.edge import service
 import os
 import time
 
+s = 60 #time to wait for a single component on the page to appear, in seconds; increase it if you get server-side errors «try again later»
+
 options = webdriver.EdgeOptions()
-options.use_chromium = True  # Specify using Chromium backend
+options.use_chromium = True
 options.add_argument('headless')
 options.add_argument('disable-gpu')
-
 options.page_load_strategy = 'eager' #do not wait for images to load
 options.add_experimental_option("detach", True)
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage') # uses disk instead of RAM, may be slow, use it if You receive "driver Run out of memory" crashed browser message
 
-s = 60 #time to wait for a single component on the page to appear, in seconds; increase it if you get server-side errors «try again later»
-
-service = EdgeService(executable_path='/usr/local/bin/msedgedriver')
-driver = webdriver.Edge(service=service, options=options)
+driver = webdriver.Edge(EdgeChromiumDriverManager().install(), options=options)
 
 action = ActionChains(driver)
 wait = WebDriverWait(driver,s)
