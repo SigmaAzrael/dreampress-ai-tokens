@@ -88,7 +88,7 @@ def login():
     
 def collect_tokens():
     try:
-        collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "🎁 COLLECT DAILY TOKENS")]/parent::div')))
+        collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "🎁 COLLECT DAILY TOKENS")]/parent::div[@class="bubble-element Text cmaSaZr bubble-r-vertical-center clickable-element"]')))
         collect_button.click()
         time.sleep(5)
         return "success"
