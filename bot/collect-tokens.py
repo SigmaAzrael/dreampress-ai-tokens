@@ -60,8 +60,8 @@ def login():
         time.sleep(10)
         
         # If the login is inside an iframe, you'll need to switch to it before interacting with elements
-        frame = WebDriverWait(driver, s).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
-        driver.switch_to.frame(frame)
+        # frame = WebDriverWait(driver, s).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+        # driver.switch_to.frame(frame)
         
         first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div[@class="bubble-element Text cmcsaX bubble-r-vertical-center clickable-element rounded-corners-gradient-borders"]')))
         god_click(driver, first_login_button) 
