@@ -57,7 +57,11 @@ def god_click(driver, element): # 3 events
 def login():
     try:
         driver.get(login_page)
-        time.sleep(15)
+        time.sleep(10)
+        
+        # If the login is inside an iframe, you'll need to switch to it before interacting with elements
+        frame = WebDriverWait(driver, s).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+        driver.switch_to.frame(frame)
         
         first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div')))
         god_click(driver, first_login_button) 
