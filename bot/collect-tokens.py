@@ -64,11 +64,11 @@ def login():
         # driver.switch_to.frame(frame)
         
         first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div[@class="bubble-element Text cmcsaX bubble-r-vertical-center clickable-element rounded-corners-gradient-borders"]')))
-        god_click(driver, first_login_button) 
+        first_login_button.click()
         
         try:
-            second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE")]')))
-            god_click(driver, second_login_button)
+            second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE") and @class="bubble-element Text cmaUaOaJ clickable-element"]')))
+            second_login_button.click()
         except:
             pass 
         
@@ -77,7 +77,7 @@ def login():
         wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
 
         login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "LOGIN")]')))
-        god_click(driver, login_button)
+        login_button.click()
         
     except Exception as e:
         driver.save_screenshot('error.png')
@@ -89,7 +89,7 @@ def login():
 def collect_tokens():
     try:
         collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "🎁 COLLECT DAILY TOKENS")]/parent::div')))
-        god_click(driver, collect_button)
+        collect_button.click()
         time.sleep(5)
         return "success"
     except:
