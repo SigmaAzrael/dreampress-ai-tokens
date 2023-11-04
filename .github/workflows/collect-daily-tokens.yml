@@ -4,7 +4,8 @@ name: Run Python Selenium headless script to automate free daily tokens collecti
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   schedule:
-    - cron: "0 12 * * *" # every day at 12:00 PM
+    # Runs at 04:00 UTC every day
+    - cron: "0 4 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
