@@ -32,36 +32,10 @@ password = os.environ.get('KEY')
 login_page = "https://www.dreampress.ai"
 tokens_page = "https://www.dreampress.ai/library"
 
-def god_click(driver, element): # 3 events
-    try:
-        if element.is_displayed() and element.is_enabled():
-            element_id = element.get_attribute("id")
-            
-            driver.execute_script(f"""
-                arguments[0].scrollIntoView();
-                var element = document.getElementById('{element_id}');
-                ['mousedown', 'mouseup', 'click'].forEach(function(evtType) {{
-                    var event = new MouseEvent(evtType, {{
-                        'view': window,
-                        'bubbles': true,
-                        'cancelable': true
-                    }});
-                    element.dispatchEvent(event);
-                }});
-            """, element)
-        else:
-            print("Element is not visible or not enabled for clicking.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
 def login():
     try:
         driver.get(login_page)
         time.sleep(10)
-        
-        # If the login is inside an iframe, you'll need to switch to it before interacting with elements
-        # frame = WebDriverWait(driver, s).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
-        # driver.switch_to.frame(frame)
         
         first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div[@class="bubble-element Text cmcsaX bubble-r-vertical-center clickable-element rounded-corners-gradient-borders"]')))
         first_login_button.click()
