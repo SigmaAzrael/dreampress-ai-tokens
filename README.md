@@ -4,55 +4,9 @@
 
 A Python Selenium & GitHub Actions bot that automates free daily tokens collection on dreampress.ai.
 
-## GitHub Actions Contents
+## Read GitHub Actions Contents
 
-github.com/nakigoe/hh-ru-raise-bot/.github/workflows/raise.yml
-
-```
-name: Run Python Selenium headless script to collect free daily tokens on dreampress.ai
-
-# Controls when the workflow will run
-on:
-
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  schedule:
-    - cron: '0 10 * * *' # daily at 10:00 AM
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-
-  # This workflow contains a single job called "build"
-  build:
-
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Install Python
-      - name: setup python
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.x #install the python needed
-
-      - name: execute py script # run the run.py to get the latest data
-        run: |
-          pip install --upgrade pip
-          pip install selenium
-
-      - name: Raise the resume
-        run:
-          python ./bot/collect-tokens.py
-        env:
-          LOGIN: ${{ secrets.LOGIN }}
-          KEY: ${{ secrets.KEY }}
-```
+https://github.com/nakigoe/dreampress-ai-tokens/blob/main/.github/workflows/collect-daily-tokens.yml
 
 ## Usage
 
@@ -75,6 +29,10 @@ Add stars to the pepositories!!!
 <h1 name="ru" id="ru">dreampress.ai автоматизация сбора ежедневных бесплатных токенов</h1>
 
 Бот на Python Selenium и GitHub Actions, автоматически собирает Ваши ежедневные бесплатные токены на dreampress.ai
+
+## Прочитайте содержание файла GitHub Actions
+
+https://github.com/nakigoe/dreampress-ai-tokens/blob/main/.github/workflows/collect-daily-tokens.yml
 
 Всё настроено для использования бота на GitHub:
 
