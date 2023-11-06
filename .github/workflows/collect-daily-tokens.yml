@@ -27,18 +27,18 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.x #install the python needed
+          python-version: 3.x # install the python needed
 
-      - name: execute py script # run the run.py to get the latest data
+      - name: execute py script # install dependencies
         run: |
           pip install --upgrade pip
           pip install -U selenium webdriver-manager
 
-      - name: Raise the resume
+      - name: Collect free daily tokens on dreampress.ai, that is, run your Python code from the repo
         run: python ./bot/collect-tokens.py
         env:
           LOGIN: ${{ secrets.LOGIN }}
-          KEY: ${{ secrets.KEY }} # if run.py requires passwords..etc, set it as secrets
+          KEY: ${{ secrets.KEY }} # set your login and password to dreampress.ai in the repo secrets before running the script
 
       - name: Take screenshot on failure
         if: failure() # This ensures the step only runs if the previous steps failed
