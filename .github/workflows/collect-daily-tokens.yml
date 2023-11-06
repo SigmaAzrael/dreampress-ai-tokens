@@ -29,12 +29,12 @@ jobs:
         with:
           python-version: 3.x # install the python needed
 
-      - name: execute py script # install dependencies
+      - name: install dependencies
         run: |
           pip install --upgrade pip
           pip install -U selenium webdriver-manager
 
-      - name: Collect free daily tokens on dreampress.ai, that is, run your Python code from the repo
+      - name: execute Your python script to collect the tokens
         run: python ./bot/collect-tokens.py
         env:
           LOGIN: ${{ secrets.LOGIN }}
