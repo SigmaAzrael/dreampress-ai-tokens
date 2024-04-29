@@ -36,25 +36,31 @@ def login():
     try:
         driver.get(login_page)
         time.sleep(10)
+        eighteen_button =  wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Agree and Enter")]')))
+        eighteen_button.click()
         
-        first_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "LOG IN/SIGN UP")]/parent::div[@class="bubble-element Text cmcsaX bubble-r-vertical-center clickable-element rounded-corners-gradient-borders"]')))
-        first_login_button.click()
+        login_start_button =  wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Login/Signup")]')))
+        login_start_button.click()
         
-        try:
-            second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE") and @class="bubble-element Text cmaUaOaJ clickable-element"]')))
-            second_login_button.click()
-        except:
-            pass 
+        second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class,"bubble-r-container flex row")]/div[contains(., "Log In")]')))
+         
+        second_login_button.click()
+        
+        # try:
+        #     second_login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "OR LOGIN HERE") and @class="bubble-element Text cmaUaOaJ clickable-element"]')))
+        #     second_login_button.click()
+        # except:
+        #     pass 
         
         wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="email"]'))).send_keys(username)
 
         wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
 
-        login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "LOGIN")]')))
+        login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class, "bub)]button[contains(., " Login")]')))
         login_button.click()
         
     except Exception as e:
-        driver.save_screenshot('error.png')
+        # driver.save_screenshot('error.png')
         print(e)
         # You can also dump the current HTML to see what's on the page
         print(driver.page_source)
@@ -62,7 +68,8 @@ def login():
     
 def collect_tokens():
     try:
-        collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "🎁 COLLECT DAILY TOKENS")]/parent::div[@class="bubble-element Text cmaSaZr bubble-r-vertical-center clickable-element"]')))
+        # collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(., "🎁 COLLECT DAILY TOKENS")]/parent::div[@class="bubble-element Text cmaSaZr bubble-r-vertical-center clickable-element"]')))
+        collect_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., "Free tokens")]')))
         collect_button.click()
         time.sleep(5)
         return "success"
