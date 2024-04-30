@@ -20,11 +20,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Install Python
       - name: setup python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x # install the python needed
 
@@ -46,7 +46,7 @@ jobs:
           mv error.png ./screenshots
         # Add this to the end of your job
       - name: Upload screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always() # This ensures the artifacts are always uploaded, even if the workflow fails
         with:
           name: screenshots
