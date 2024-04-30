@@ -56,7 +56,7 @@ def login():
 
         wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@type="password"]'))).send_keys(password)
 
-        login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[contains(@class, "bub)]button[contains(., " Login")]')))
+        login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(., " Login")]')))
         login_button.click()
         
     except Exception as e:
